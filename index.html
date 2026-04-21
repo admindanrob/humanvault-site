@@ -77,16 +77,22 @@
     .site-header { position: sticky; top: 0; z-index: 40; backdrop-filter: blur(14px); background: color-mix(in srgb, var(--color-bg) 82%, transparent); border-bottom: 1px solid transparent; }
     .site-header.scrolled { border-color: var(--color-border); }
     .nav { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-4) 0; }
-    .brand { display: inline-flex; align-items: center; gap: .85rem; font-weight: 700; letter-spacing: -.03em; }
+    .brand { display: inline-flex; align-items: center; gap: 1rem; font-weight: 700; letter-spacing: -.03em; }
     .brand-mark {
-  width: 2.6rem;
-  height: 2.6rem;
-  border-radius: 0.9rem;
-  background: transparent;
-  color: inherit;
-  display: grid;
-  place-items: center;
-}
+      width: 3.9rem;
+      height: 3.9rem;
+      border-radius: 1rem;
+      background: transparent;
+      color: inherit;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+    }
+    .brand-mark svg {
+      width: 56px;
+      height: 56px;
+      display: block;
+    }
     .brand-word { font-size: 1.05rem; }
     .nav-links { display: flex; align-items: center; gap: var(--space-5); }
     .nav-links a { font-size: var(--text-sm); color: var(--color-text-muted); }
@@ -173,6 +179,7 @@
     .cta-actions { display: flex; flex-wrap: wrap; gap: .9rem; margin-top: 1.25rem; }
     footer { padding: 1.2rem 0 2rem; }
     .footer-line { border-top: 1px solid var(--color-divider); padding-top: 1rem; display: flex; justify-content: space-between; gap: 1rem; color: var(--color-text-faint); font-size: var(--text-sm); }
+    .footer-brand { display: flex; align-items: center; gap: 0.85rem; }
     .reveal { opacity: 0; transform: translateY(16px); transition: opacity 700ms var(--transition), transform 700ms var(--transition); }
     .reveal.in-view { opacity: 1; transform: translateY(0); }
     @media (max-width: 980px) {
@@ -205,15 +212,14 @@
       <a class="brand" href="#top" aria-label="HumanVault home">
         <span class="brand-mark verified-keyhole-mark" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="26" height="26">
-            <rect width="256" height="256" rx="52" fill="#F8F9F7"/>
-            <rect x="46" y="46" width="164" height="164" rx="46" fill="none" stroke="#121826" stroke-width="10"/>
-            <circle cx="128" cy="102" r="36" fill="#121826"/>
-            <rect x="104" y="122" width="48" height="66" rx="14" fill="#121826"/>
-            <circle cx="128" cy="126" r="8" fill="#ffffff"/>
-            <path d="M128 134v24" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
-            <path d="M67 93a72 72 0 0 1 122 0" fill="none" stroke="#2D6BFF" stroke-width="10" stroke-linecap="round"/>
-            <circle cx="186" cy="186" r="24" fill="#2D6BFF"/>
-            <path d="M176 186l8 8 14-20" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect width="256" height="256" rx="52" fill="none"/>
+            <rect x="52" y="52" width="152" height="152" rx="36" fill="none" stroke="#C8C5BD" stroke-width="10"/>
+            <path d="M54 128c20-31 47-46 74-46s54 15 74 46c-20 31-47 46-74 46s-54-15-74-46Z" fill="none" stroke="#C8C5BD" stroke-width="10" stroke-linejoin="round"/>
+            <circle cx="128" cy="128" r="28" fill="none" stroke="#18B7A0" stroke-width="12"/>
+            <path d="M128 108c-9.941 0-18 8.059-18 18 0 5.6 2.557 10.603 6.567 13.904V154c0 2.209 1.791 4 4 4h14.866c2.209 0 4-1.791 4-4v-14.096c4.01-3.301 6.567-8.304 6.567-13.904 0-9.941-8.059-18-18-18Z" fill="#C8C5BD"/>
+            <circle cx="128" cy="126" r="4.75" fill="#11110F"/>
+            <path d="M128 130v15" stroke="#11110F" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M71 100c9-12 20-20 34-25" fill="none" stroke="#8E8A80" stroke-width="8" stroke-linecap="round"/>
           </svg>
         </span>
         <span class="brand-word">HumanVault</span>
@@ -467,7 +473,24 @@
 
   <footer>
     <div class="container footer-line">
-      <div>HumanVault — proof of humanity for Safe multisig.</div>
+      <div class="footer-brand">
+        <span class="brand-mark verified-keyhole-mark" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="26" height="26">
+            <rect width="256" height="256" rx="52" fill="none"/>
+            <rect x="52" y="52" width="152" height="152" rx="36" fill="none" stroke="#C8C5BD" stroke-width="10"/>
+            <path d="M54 128c20-31 47-46 74-46s54 15 74 46c-20 31-47 46-74 46s-54-15-74-46Z" fill="none" stroke="#C8C5BD" stroke-width="10" stroke-linejoin="round"/>
+            <circle cx="128" cy="128" r="28" fill="none" stroke="#18B7A0" stroke-width="12"/>
+            <path d="M128 108c-9.941 0-18 8.059-18 18 0 5.6 2.557 10.603 6.567 13.904V154c0 2.209 1.791 4 4 4h14.866c2.209 0 4-1.791 4-4v-14.096c4.01-3.301 6.567-8.304 6.567-13.904 0-9.941-8.059-18-18-18Z" fill="#C8C5BD"/>
+            <circle cx="128" cy="126" r="4.75" fill="#11110F"/>
+            <path d="M128 130v15" stroke="#11110F" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M71 100c9-12 20-20 34-25" fill="none" stroke="#8E8A80" stroke-width="8" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <div>
+          <div style="font-weight:700;color:var(--color-text);">HumanVault</div>
+          <div>Proof of humanity for Safe multisig.</div>
+        </div>
+      </div>
       <div>Built for a world where keys alone are not enough.</div>
     </div>
   </footer>

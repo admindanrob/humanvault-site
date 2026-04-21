@@ -78,7 +78,15 @@
     .site-header.scrolled { border-color: var(--color-border); }
     .nav { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-4) 0; }
     .brand { display: inline-flex; align-items: center; gap: .85rem; font-weight: 700; letter-spacing: -.03em; }
-    .brand-mark { width: 2.4rem; height: 2.4rem; border-radius: 0.9rem; background: var(--color-primary); color: var(--color-text-inverse); display: grid; place-items: center; box-shadow: var(--shadow-sm); }
+    .brand-mark {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 0.9rem;
+  background: transparent;
+  color: inherit;
+  display: grid;
+  place-items: center;
+}
     .brand-word { font-size: 1.05rem; }
     .nav-links { display: flex; align-items: center; gap: var(--space-5); }
     .nav-links a { font-size: var(--text-sm); color: var(--color-text-muted); }
@@ -195,10 +203,17 @@
   <header class="site-header" id="top">
     <div class="container nav" aria-label="Primary navigation">
       <a class="brand" href="#top" aria-label="HumanVault home">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3 5 6.5v5.4c0 4.2 2.9 8 7 9.1 4.1-1.1 7-4.9 7-9.1V6.5L12 3Z"/>
-            <path d="M9.2 12.2 11 14l3.8-4"/>
+        <span class="brand-mark verified-keyhole-mark" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="26" height="26">
+            <rect width="256" height="256" rx="52" fill="#F8F9F7"/>
+            <rect x="46" y="46" width="164" height="164" rx="46" fill="none" stroke="#121826" stroke-width="10"/>
+            <circle cx="128" cy="102" r="36" fill="#121826"/>
+            <rect x="104" y="122" width="48" height="66" rx="14" fill="#121826"/>
+            <circle cx="128" cy="126" r="8" fill="#ffffff"/>
+            <path d="M128 134v24" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+            <path d="M67 93a72 72 0 0 1 122 0" fill="none" stroke="#2D6BFF" stroke-width="10" stroke-linecap="round"/>
+            <circle cx="186" cy="186" r="24" fill="#2D6BFF"/>
+            <path d="M176 186l8 8 14-20" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </span>
         <span class="brand-word">HumanVault</span>

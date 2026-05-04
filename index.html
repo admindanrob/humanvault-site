@@ -219,7 +219,14 @@
    .reveal { opacity: 1; transform: none; transition: none; }
    * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
- </style>
+ 
+.vault-signer-summary{padding:1rem 0 0.75rem;border-bottom:1px solid rgba(255,255,255,.14);}
+[data-theme="dark"] .vault-signer-summary{border-bottom-color:rgba(17,17,15,.14);}
+.vault-signer-main,.vault-signer-sub{display:flex;justify-content:space-between;gap:1rem;}
+.vault-signer-main{font-size:1.2rem;font-weight:700;letter-spacing:-.03em;}
+.vault-signer-sub{margin-top:.25rem;font-size:var(--text-xs,0.75rem);opacity:.68;text-transform:uppercase;letter-spacing:.12em;}
+.hero-card-caption{margin-top:1rem;max-width:42ch;color:var(--color-text-muted);font-size:var(--text-sm,0.875rem);line-height:1.5;text-transform:none;letter-spacing:normal;}
+</style>
 </head>
 <body>
  <a class="skip-link" href="#content">Skip to content</a>
@@ -269,53 +276,60 @@
       <p class="hero-note">No verified human. No signature. No exception.</p>
      </div>
      <aside class="hero-card reveal" aria-label="Vault preview">
-      <span class="status-chip">World ID verified vault</span>
-      <div class="vault-visual">
-       <div class="vault-topline">
-        <div>
-         <div class="mini-label">Vault</div>
-         <div class="vault-title">Signers: Dan + Arnaud · 2 of 2 required</div>
-        </div>
-        <div class="mini-label">Gas sponsored on World Chain</div>
-       </div>
-       <div>
-        <div class="mini-label">Built on Safe — and locked to verified humans. Signer impersonation, the most common attack class against multisigs, is blocked by design.</div>
-        
-       </div>
+  <span class="status-chip">World ID verified vault</span>
+
+  <div class="vault-visual">
+    <div class="vault-signer-summary">
+      <div class="vault-signer-main">
+        <span>Dan + Arnaud</span>
+        <span>2 of 2</span>
       </div>
-      <div class="vault-panels">
-       <div class="mini-panel">
-        <div class="mini-icon" aria-hidden="true">
-         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21H4a1 1 0 0 1-1-1V8l9-5 9 5v12a1 1 0 0 1-1 1Z"/><path d="M9 21v-6h6v6"/></svg>
-        </div>
-        <div>
-         <div class="mini-label">Infrastructure</div>
-         <div class="mini-value">Safe smart account</div>
-        </div>
-        <div class="mini-label">Live</div>
-       </div>
-       <div class="mini-panel">
-        <div class="mini-icon" aria-hidden="true">
-         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.2"/></svg>
-        </div>
-        <div>
-         <div class="mini-label">Human check</div>
-         <div class="mini-value">World ID before every signature</div>
-        </div>
-        <div class="mini-label">Required</div>
-       </div>
-       <div class="mini-panel">
-        <div class="mini-icon" aria-hidden="true">
-         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M3 12h18"/></svg>
-        </div>
-        <div>
-         <div class="mini-label">Experience</div>
-         <div class="mini-value">Feels like messaging, not signing transactions</div>
-        </div>
-        <div class="mini-label">Simple</div>
-       </div>
+      <div class="vault-signer-sub">
+        <span>Vault signers</span>
+        <span>required</span>
       </div>
-     </aside>
+    </div>
+  </div>
+
+  <div class="vault-panels">
+    <div class="mini-panel">
+      <div class="mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21H4a1 1 0 0 1-1-1V8l9-5 9 5v12a1 1 0 0 1-1 1Z"/><path d="M9 21v-6h6v6"/></svg></div>
+      <div>
+        <div class="mini-label">Infrastructure</div>
+        <div class="mini-value">Safe smart account</div>
+      </div>
+      <div class="mini-label">Live</div>
+    </div>
+
+    <div class="mini-panel">
+      <div class="mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.2"/></svg></div>
+      <div>
+        <div class="mini-label">Human check</div>
+        <div class="mini-value">World ID before every signature</div>
+      </div>
+      <div class="mini-label">Required</div>
+    </div>
+
+    <div class="mini-panel">
+      <div class="mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M3 12h18"/></svg></div>
+      <div>
+        <div class="mini-label">Experience</div>
+        <div class="mini-value">Feels like messaging, not signing transactions</div>
+      </div>
+      <div class="mini-label">Simple</div>
+    </div>
+
+    <div class="mini-panel">
+      <div class="mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 22V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/><path d="M3 22h12"/><path d="M15 8h2a2 2 0 0 1 2 2v3a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V9l-3-3"/><path d="M7 6v4"/></svg></div>
+      <div>
+        <div class="mini-label">Gas</div>
+        <div class="mini-value">Sponsored on World Chain</div>
+      </div>
+      <div class="mini-label">Free</div>
+    </div>
+  </div>
+</aside>
+<p class="hero-card-caption">Built on Safe — and locked to verified humans. Signer impersonation, the most common attack class against multisigs, is blocked by design.</p>
     </div>
 
     <div class="logo-band reveal" aria-label="Built on platform logos">

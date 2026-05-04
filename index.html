@@ -226,6 +226,16 @@
 .vault-signer-main{font-size:1.2rem;font-weight:700;letter-spacing:-.03em;}
 .vault-signer-sub{margin-top:.25rem;font-size:var(--text-xs,0.75rem);opacity:.68;text-transform:uppercase;letter-spacing:.12em;}
 .hero-card-caption{margin-top:1rem;max-width:42ch;color:var(--color-text-muted);font-size:var(--text-sm,0.875rem);line-height:1.5;text-transform:none;letter-spacing:normal;}
+
+.hero-grid{align-items:start;}
+.hero-copy,.hero-visual,.hero-card{align-self:start;}
+.hero-visual{display:grid;gap:0.75rem;align-self:start;}
+.hero-copy .hero-tagline{margin-top:var(--space-4, 1rem);color:var(--color-text);font-weight:700;font-size:var(--text-base, 1rem);line-height:1.35;letter-spacing:-0.02em;}
+.hero-actions{margin-top:var(--space-5,1.25rem);}
+.hero-preview-cue{margin-top:0.85rem;color:var(--color-text-faint,var(--color-text-muted));font-size:var(--text-xs,0.75rem);line-height:1.4;}
+.hero-card-caption{margin-top:0;max-width:42ch;color:var(--color-text-muted);font-size:var(--text-sm,0.875rem);line-height:1.5;text-transform:none;letter-spacing:normal;}
+.hero-card::before{display:none !important;content:none !important;background:none !important;box-shadow:none !important;}
+.hero-card .mini-panel:last-child::before,.hero-card .mini-panel:last-child::after{display:none !important;content:none !important;background:none !important;}
 </style>
 </head>
 <body>
@@ -269,13 +279,14 @@
      <div class="hero-copy reveal">
       <h1>Shared Vaults. Real humans. Every approval.</h1>
       <p>Built for families, investment clubs, and DAOs who share funds. No browser extensions, no duplicate accounts. Every signer is a real, unique person, verified by World ID before each signature.</p>
+      <p class="hero-tagline">No verified human. No signature. No exception.</p>
       <div class="hero-actions">
        <a class="pill-btn" href="https://world.org/" target="_blank" rel="noopener noreferrer">Launch HumanVault</a>
        <a class="ghost-btn" href="#how">See how it works</a>
       </div>
-      <p class="hero-note">No verified human. No signature. No exception.</p>
      </div>
-     <aside class="hero-card reveal" aria-label="Vault preview">
+     <div class="hero-visual reveal">
+  <aside class="hero-card" aria-label="Vault preview">
   <span class="status-chip">World ID verified vault</span>
 
   <div class="vault-visual">
@@ -329,7 +340,9 @@
     </div>
   </div>
 </aside>
-<p class="hero-card-caption">Built on Safe — and locked to verified humans. Signer impersonation, the most common attack class against multisigs, is blocked by design.</p>
+  <p class="hero-preview-cue">Live preview — what you'll see in World App</p>
+  <p class="hero-card-caption">Built on Safe — and locked to verified humans. Signer impersonation, the most common attack class against multisigs, is blocked by design.</p>
+</div>
     </div>
 
     <div class="logo-band reveal" aria-label="Built on platform logos">

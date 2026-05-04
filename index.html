@@ -115,7 +115,7 @@
   .hero-note { margin-top: var(--space-4); font-size: var(--text-sm); color: var(--color-text-faint); }
   .hero-card { position: relative; padding: var(--space-6); background: #121212; color: #f7f6f2; border-radius: var(--radius-xl); min-height: 420px; box-shadow: var(--shadow-md); overflow: hidden; }
   [data-theme="dark"] .hero-card { background: #f5f2eb; color: #11110f; }
-  .hero-card::before { content: ""; position: absolute; inset: auto auto -18% -12%; width: 240px; height: 240px; border-radius: 50%; background: color-mix(in srgb, var(--color-accent) 36%, transparent); filter: blur(10px); }
+  
   .status-chip { display: inline-flex; align-items: center; gap: .5rem; border-radius: var(--radius-full); padding: .55rem .8rem; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.1); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: .12em; }
   [data-theme="dark"] .status-chip { background: rgba(17,17,15,.06); border-color: rgba(17,17,15,.1); }
   .vault-visual { display: grid; gap: 1rem; margin-top: var(--space-5); }
@@ -236,6 +236,9 @@
 .hero-card-caption{margin-top:0;max-width:42ch;color:var(--color-text-muted);font-size:var(--text-sm,0.875rem);line-height:1.5;text-transform:none;letter-spacing:normal;}
 .hero-card::before{display:none !important;content:none !important;background:none !important;box-shadow:none !important;}
 .hero-card .mini-panel:last-child::before,.hero-card .mini-panel:last-child::after{display:none !important;content:none !important;background:none !important;}
+
+.hero-security-claim{margin:clamp(2rem,5vw,3.5rem) auto 0;padding:clamp(1.5rem,4vw,2.75rem) 0;border-top:1px solid var(--color-divider);border-bottom:1px solid var(--color-divider);}
+.hero-security-claim p{max-width:860px;margin:0 auto;color:var(--color-text);font-size:var(--text-lg,1.25rem);line-height:1.35;font-weight:700;text-align:center;text-transform:none;letter-spacing:normal;}
 </style>
 </head>
 <body>
@@ -341,11 +344,14 @@
   </div>
 </aside>
   <p class="hero-preview-cue">Live preview — what you'll see in World App</p>
-  <p class="hero-card-caption">Built on Safe — and locked to verified humans. Signer impersonation, the most common attack class against multisigs, is blocked by design.</p>
 </div>
     </div>
 
-    <div class="logo-band reveal" aria-label="Built on platform logos">
+    
+<div class="hero-security-claim reveal" aria-label="Security claim">
+  <p>Built on Safe — and locked to verified humans. Signer impersonation, the most common attack class against multisigs, is blocked by design.</p>
+</div>
+<div class="logo-band reveal" aria-label="Built on platform logos">
      <span class="logo-band-label">Built on Safe and World ID.</span>
      <div class="logo-row">
       <div class="logo-card" aria-label="Safe logo">

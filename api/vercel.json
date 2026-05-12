@@ -1,5 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/contact", "destination": "/contact.html" }
-  ]
-}

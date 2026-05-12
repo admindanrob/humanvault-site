@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact us — HumanVault</title>
+<meta name="description" content="Have a question about Human Vault? Send us a message and we'll get back to you.">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<style>
+:root,[data-theme="light"]{
+  --text-xs:clamp(.75rem,.7rem + .25vw,.875rem);
+  --text-sm:clamp(.875rem,.8rem + .35vw,1rem);
+  --text-base:clamp(1rem,.95rem + .25vw,1.125rem);
+  --text-lg:clamp(1.125rem,1rem + .75vw,1.5rem);
+  --text-xl:clamp(1.5rem,1.2rem + 1.25vw,2.25rem);
+  --text-2xl:clamp(2rem,1.2rem + 2.5vw,3.75rem);
+  --space-2:.5rem;--space-4:1rem;--space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-16:4rem;
+  --color-bg:#f7f6f2;--color-surface:#f9f8f5;--color-surface-2:#fbfbf9;
+  --color-border:rgba(40,37,29,.12);--color-divider:#ddd8cf;
+  --color-text:#11110f;--color-text-muted:#5f5d58;--color-text-faint:#8f8c84;
+  --color-text-inverse:#f7f6f2;
+  --color-primary:#121212;--color-primary-hover:#000;
+  --color-accent:#01696f;--color-accent-soft:rgba(1,105,111,.12);
+  --color-error:#a12c7b;--color-error-soft:rgba(161,44,123,.1);
+  --shadow-sm:0 1px 2px rgba(17,17,15,.06);
+  --radius-md:.9rem;--radius-lg:1.25rem;--radius-full:999px;
+  --content:1180px;--font-body:"Satoshi",Inter,sans-serif;
+  --transition:180ms cubic-bezier(.16,1,.3,1);
+}
+[data-theme="dark"]{
+  --color-bg:#11110f;--color-surface:#171715;--color-surface-2:#1d1d1b;
+  --color-border:rgba(247,246,242,.14);--color-divider:#2d2d28;
+  --color-text:#f5f2eb;--color-text-muted:#c2beb4;--color-text-faint:#8e8a80;
+  --color-text-inverse:#11110f;
+  --color-primary:#f5f2eb;--color-primary-hover:#fff;
+  --color-accent:#4bd0b8;--color-accent-soft:rgba(75,208,184,.14);
+  --color-error:#d163a7;--color-error-soft:rgba(209,99,167,.16);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.2);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:none;text-size-adjust:none}
+body{min-height:100vh;font-family:var(--font-body);font-size:var(--text-base);line-height:1.55;
+  color:var(--color-text);background:var(--color-bg);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;border:0;background:none;color:inherit;cursor:pointer}
+img,svg{display:block}
+:focus-visible{outline:2px solid var(--color-accent);outline-offset:3px;border-radius:.5rem}
+.container{width:min(calc(100% - 2rem),var(--content));margin:0 auto}
+
+/* ── nav ── */
+.site-header{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);
+  background:color-mix(in srgb,var(--color-bg) 82%,transparent);
+  border-bottom:1px solid transparent;transition:border-color var(--transition)}
+.site-header.scrolled{border-color:var(--color-border)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);padding:var(--space-4) 0}
+.brand{display:inline-flex;align-items:center;gap:.9rem;font-weight:700;letter-spacing:-.03em}
+.brand-word{font-size:1.05rem}
+.nav-links{display:flex;align-items:center;gap:var(--space-5)}
+.nav-links a{font-size:var(--text-sm);color:var(--color-text-muted);transition:color var(--transition)}
+.nav-links a:hover,.nav-links a.active{color:var(--color-text)}
+.nav-actions{display:flex;align-items:center;gap:.75rem}
+.theme-btn{display:grid;place-items:center;width:44px;height:44px;border-radius:var(--radius-full);
+  border:1px solid var(--color-border);background:var(--color-surface-2);
+  transition:background var(--transition)}
+.theme-btn:hover{background:var(--color-surface)}
+.launch-btn{display:inline-flex;align-items:center;height:44px;padding:0 1.25rem;
+  background:var(--color-primary);color:var(--color-text-inverse);
+  border-radius:var(--radius-full);font-size:var(--text-sm);font-weight:700;
+  box-shadow:var(--shadow-sm);transition:background var(--transition),transform var(--transition)}
+.launch-btn:hover{background:var(--color-primary-hover);transform:translateY(-1px)}
+
+/* ── page ── */
+.page-hero{padding:clamp(3.5rem,7vw,6rem) 0 clamp(2rem,4vw,3rem)}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .85rem;
+  border-radius:var(--radius-full);border:1px solid var(--color-border);
+  background:color-mix(in srgb,var(--color-surface) 78%,transparent);
+  font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.14em;color:var(--color-text-muted)}
+.eyebrow-dot{width:.45rem;height:.45rem;border-radius:50%;background:var(--color-accent)}
+.page-hero h1{font-size:var(--text-2xl);letter-spacing:-.05em;line-height:1.05;
+  margin-top:var(--space-5);max-width:14ch}
+.page-hero .intro{margin-top:var(--space-5);color:var(--color-text-muted);max-width:56ch;
+  font-size:var(--text-lg)}
+
+/* ── contact grid ── */
+.contact-section{padding-bottom:clamp(4rem,8vw,7rem)}
+.contact-grid{display:grid;grid-template-columns:.88fr 1.12fr;gap:1.25rem;margin-top:var(--space-8)}
+.contact-card,.contact-form-wrap{
+  border-radius:1.5rem;
+  background:color-mix(in srgb,var(--color-surface-2) 94%,transparent);
+  border:1px solid var(--color-border);
+  box-shadow:var(--shadow-sm);
+  padding:clamp(1.5rem,3vw,2rem)}
+.contact-card h2{font-size:1.18rem;letter-spacing:-.04em;margin-bottom:.6rem}
+.muted{color:var(--color-text-muted)}
+.contact-points{display:grid;gap:.85rem;margin-top:1.1rem}
+.cp{padding-top:.85rem;border-top:1px solid var(--color-divider)}
+.cp strong{display:block;font-size:var(--text-sm);font-weight:700;margin-bottom:.2rem}
+.cp span{font-size:var(--text-sm);color:var(--color-text-muted)}
+
+/* ── form ── */
+.contact-form-wrap h2{font-size:1.18rem;letter-spacing:-.04em;margin-bottom:.35rem}
+.contact-form{display:grid;gap:1rem;margin-top:1.1rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.field{display:grid;gap:.4rem}
+.field label{font-size:var(--text-sm);font-weight:700}
+.req{color:var(--color-accent);margin-left:.2rem}
+.field input,.field textarea{
+  width:100%;padding:.85rem 1rem;border-radius:var(--radius-md);
+  background:var(--color-bg);border:1px solid var(--color-border);
+  color:var(--color-text);font-size:var(--text-base);font-family:inherit;
+  transition:border-color var(--transition),box-shadow var(--transition)}
+.field textarea{min-height:170px;resize:vertical;line-height:1.5}
+.field input:focus,.field textarea:focus{
+  outline:none;border-color:var(--color-accent);box-shadow:0 0 0 3px var(--color-accent-soft)}
+.field .err{display:none;font-size:var(--text-xs);color:var(--color-error);margin-top:.1rem}
+.field.has-error input,.field.has-error textarea{
+  border-color:var(--color-error);box-shadow:0 0 0 3px var(--color-error-soft)}
+.field.has-error .err{display:block}
+/* honeypot */
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.form-actions{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:.25rem}
+.submit-btn{
+  background:var(--color-primary);color:var(--color-text-inverse);
+  padding:.95rem 1.6rem;border-radius:var(--radius-full);
+  font-weight:700;font-size:var(--text-sm);box-shadow:var(--shadow-sm);min-height:48px;
+  transition:background var(--transition),transform var(--transition),opacity var(--transition)}
+.submit-btn:hover:not([disabled]){background:var(--color-primary-hover);transform:translateY(-1px)}
+.submit-btn[disabled]{opacity:.55;cursor:not-allowed}
+.form-note{font-size:var(--text-xs);color:var(--color-text-faint)}
+.f-alert{display:none;margin-top:1rem;padding:.9rem 1rem;border-radius:var(--radius-md);font-size:var(--text-sm)}
+.f-alert.show{display:block}
+.f-alert.ok{background:var(--color-accent-soft);color:var(--color-text)}
+.f-alert.fail{background:var(--color-error-soft);color:var(--color-text)}
+
+/* ── footer ── */
+footer{border-top:1px solid var(--color-divider);padding:1.5rem 0 2.5rem}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;
+  gap:1rem;flex-wrap:wrap;color:var(--color-text-faint);font-size:var(--text-sm)}
+.footer-brand{display:flex;align-items:center;gap:.75rem;color:var(--color-text)}
+.footer-brand span{font-weight:700}
+
+@media(max-width:860px){
+  .contact-grid,.form-row{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header" id="top">
+<div class="container">
+<nav class="nav" aria-label="Primary navigation">
+
+  <a class="brand" href="/" aria-label="HumanVault home">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" width="40" height="40" aria-hidden="true">
+      <rect x="6" y="6" width="44" height="44" rx="12" fill="none" stroke="currentColor" stroke-opacity=".35" stroke-width="2.5"/>
+      <path d="M7 28c6-9 14-14 21-14s15 5 21 14c-6 9-14 14-21 14S13 37 7 28Z" fill="none" stroke="currentColor" stroke-opacity=".35" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="28" cy="28" r="7" fill="none" stroke="#18B7A0" stroke-width="3"/>
+    </svg>
+    <span class="brand-word">HumanVault</span>
+  </a>
+
+  <div class="nav-links" aria-label="Site sections">
+    <a href="/#why">Why now</a>
+    <a href="/#how">How it works</a>
+    <a href="/#founder">Founder</a>
+    <a href="/contactus" class="active" aria-current="page">Contact</a>
+  </div>
+
+  <div class="nav-actions">
+    <button class="theme-btn" type="button" data-theme-toggle aria-label="Switch to dark mode">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <a class="launch-btn"
+       href="https://world.org/mini-app?app_id=app_82d5214dec1f633f7ea0dc61964d60d0&path=&draft_id=meta_4809bf02db777a9fc4b2a94e59b0f40f"
+       target="_blank" rel="noopener noreferrer">
+      Launch HumanVault
+    </a>
+  </div>
+
+</nav>
+</div>
+</header>
+
+<main>
+
+  <div class="page-hero">
+    <div class="container">
+      <span class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Contact</span>
+      <h1>Contact us</h1>
+      <p class="intro">Have a question about Human Vault? Send us a message and we&rsquo;ll get back to you.</p>
+    </div>
+  </div>
+
+  <section class="contact-section" aria-labelledby="contact-heading">
+    <div class="container">
+      <div class="contact-grid">
+
+        <article class="contact-card">
+          <h2 id="contact-heading">What to write about</h2>
+          <p class="muted">Use the form for product questions, bug reports, partnership inquiries, or anything else.</p>
+          <div class="contact-points">
+            <div class="cp">
+              <strong>Bug reports</strong>
+              <span>Tell us what happened, what you expected, and the device or browser you used.</span>
+            </div>
+            <div class="cp">
+              <strong>Product questions</strong>
+              <span>Ask about setup, signer flows, or how HumanVault works inside World App.</span>
+            </div>
+            <div class="cp">
+              <strong>Direct inbox</strong>
+              <span>info@humanvault.xyz</span>
+            </div>
+          </div>
+        </article>
+
+        <div class="contact-form-wrap">
+          <h2>Send a message</h2>
+          <p class="muted">Submitted securely to our server &mdash; no email app required.</p>
+
+          <form id="contactForm" class="contact-form" novalidate autocomplete="on">
+
+            <div class="form-row">
+              <div class="field" data-f="name">
+                <label for="f-name">Name<span class="req" aria-hidden="true">*</span></label>
+                <input id="f-name" name="name" type="text" autocomplete="name"
+                       required maxlength="120" aria-describedby="e-name">
+                <span class="err" id="e-name" role="alert">Please enter your name.</span>
+              </div>
+              <div class="field" data-f="email">
+                <label for="f-email">Email<span class="req" aria-hidden="true">*</span></label>
+                <input id="f-email" name="email" type="email" autocomplete="email"
+                       required maxlength="200" aria-describedby="e-email">
+                <span class="err" id="e-email" role="alert">Please enter a valid email address.</span>
+              </div>
+            </div>
+
+            <div class="field" data-f="subject">
+              <label for="f-subject">Subject</label>
+              <input id="f-subject" name="subject" type="text" maxlength="200" placeholder="Optional">
+            </div>
+
+            <div class="field" data-f="message">
+              <label for="f-message">Message<span class="req" aria-hidden="true">*</span></label>
+              <textarea id="f-message" name="message" required maxlength="5000"
+                        aria-describedby="e-message"></textarea>
+              <span class="err" id="e-message" role="alert">Please enter a message.</span>
+            </div>
+
+            <!-- Honeypot: hidden from real users, bots fill it in -->
+            <div class="hp" aria-hidden="true">
+              <label for="f-website">Website</label>
+              <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="form-actions">
+              <button class="submit-btn" type="submit" id="submitBtn">Send message</button>
+            </div>
+            <p class="form-note">Fields marked <span aria-hidden="true">*</span><span class="sr-only">with an asterisk</span> are required.</p>
+
+            <div class="f-alert ok" id="fOk" role="status" aria-live="polite">
+              Thanks &mdash; your message has been sent.
+            </div>
+            <div class="f-alert fail" id="fErr" role="alert" aria-live="assertive">
+              Something went wrong. Please try again.
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" width="28" height="28" aria-hidden="true">
+        <rect x="6" y="6" width="44" height="44" rx="12" fill="none" stroke="currentColor" stroke-opacity=".35" stroke-width="2.5"/>
+        <circle cx="28" cy="28" r="7" fill="none" stroke="#18B7A0" stroke-width="3"/>
+      </svg>
+      <span>HumanVault</span>
+    </div>
+    <span>Built for a world where keys alone are not enough.</span>
+  </div>
+</footer>
+
+<script>
+// ── theme toggle ──────────────────────────────────────────────────────────────
+(function(){
+  var root=document.documentElement,btn=document.querySelector('[data-theme-toggle]');
+  var d=matchMedia('(prefers-color-scheme:dark)').matches;
+  var t=d?'dark':'light';
+  function apply(){
+    root.setAttribute('data-theme',t);
+    if(!btn)return;
+    btn.setAttribute('aria-label',t==='dark'?'Switch to light mode':'Switch to dark mode');
+    btn.innerHTML=t==='dark'
+      ?'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      :'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  }
+  apply();
+  btn&&btn.addEventListener('click',function(){t=t==='dark'?'light':'dark';apply();});
+  var h=document.querySelector('.site-header');
+  function onScroll(){h.classList.toggle('scrolled',scrollY>8);}
+  onScroll();addEventListener('scroll',onScroll,{passive:true});
+})();
+
+// ── contact form ──────────────────────────────────────────────────────────────
+(function(){
+  var form=document.getElementById('contactForm');
+  if(!form)return;
+  var btn=document.getElementById('submitBtn');
+  var fOk=document.getElementById('fOk');
+  var fErr=document.getElementById('fErr');
+  var fields={
+    name:document.getElementById('f-name'),
+    email:document.getElementById('f-email'),
+    subject:document.getElementById('f-subject'),
+    message:document.getElementById('f-message'),
+    website:document.getElementById('f-website')
+  };
+
+  var EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  function mark(k,bad){
+    var w=form.querySelector('[data-f="'+k+'"]');
+    if(w)w.classList.toggle('has-error',!!bad);
+  }
+  function validate(){
+    var n=fields.name.value.trim()!=='';
+    var e=EMAIL_RE.test(fields.email.value.trim());
+    var m=fields.message.value.trim()!=='';
+    mark('name',!n);mark('email',!e);mark('message',!m);
+    return n&&e&&m;
+  }
+  ['name','email','message'].forEach(function(k){
+    fields[k].addEventListener('input',function(){mark(k,false);});
+  });
+
+  form.addEventListener('submit',async function(ev){
+    ev.preventDefault();
+    fOk.classList.remove('show');fErr.classList.remove('show');
+    if(!validate()){return;}
+    btn.disabled=true;
+    var orig=btn.textContent;
+    btn.textContent='Sending…';
+
+    var payload={
+      name:fields.name.value.trim(),
+      email:fields.email.value.trim(),
+      subject:fields.subject.value.trim(),
+      message:fields.message.value.trim(),
+      website:fields.website.value
+    };
+
+    try{
+      var res=await fetch('/api/contact',{
+        method:'POST',
+        headers:{'content-type':'application/json'},
+        body:JSON.stringify(payload)
+      });
+      var data=await res.json().catch(function(){return{ok:false};});
+      if(res.ok&&data&&data.ok){
+        form.reset();
+        fOk.classList.add('show');
+        fOk.focus();
+      }else{
+        fErr.classList.add('show');
+        fErr.focus();
+      }
+    }catch(e){
+      fErr.classList.add('show');
+      fErr.focus();
+    }finally{
+      btn.disabled=false;
+      btn.textContent=orig;
+    }
+  });
+})();
+</script>
+
+<!-- screen-reader utility -->
+<style>.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}</style>
+</body>
+</html>

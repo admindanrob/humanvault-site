@@ -33,7 +33,7 @@ export default async function handler(req, res) {
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  const from   = process.env.SES_FROM_EMAIL   || "info@humanvault.xyz";
+  const from = "onboarding@resend.dev";
   const to     = process.env.CONTACT_TO_EMAIL || "info@humanvault.xyz";
 
   if (!apiKey) {

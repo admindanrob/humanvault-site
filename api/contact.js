@@ -33,8 +33,8 @@ export default async function handler(req, res) {
   }
 
 const apiKey = process.env.RESEND_API_KEY;
-const from   = "onboarding@resend.dev";
-const to     = "arnaud.gouriou@gmail.com";
+const from = process.env.SES_FROM_EMAIL || "info@humanvault.xyz";
+const to = process.env.CONTACT_TO_EMAIL || "info@humanvault.xyz";
 
   if (!apiKey) {
     console.error("resend: missing RESEND_API_KEY");

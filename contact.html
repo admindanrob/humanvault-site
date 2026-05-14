@@ -172,15 +172,47 @@ footer{border-top:1px solid var(--color-divider);padding:1.5rem 0 2.5rem}
 .lang-menu button[aria-selected="true"]{font-weight:700}
 .lang-menu .lang-check{opacity:0;color:var(--color-accent);font-weight:700}
 .lang-menu button[aria-selected="true"] .lang-check{opacity:1}
-@media (max-width:480px){
-  .lang-btn{padding:0 .45rem;gap:.2rem;font-size:.72rem;font-weight:600;letter-spacing:.02em;height:36px;min-height:36px}
+/* ── adaptive mobile nav: keep HumanVault wordmark, shrink everything else ── */
+@media (max-width:780px){
+  .brand-word{font-size:.95rem}
+  .brand-mark{width:2.6rem;height:2.6rem}
+  .brand-mark svg{width:38px;height:38px}
+}
+@media (max-width:560px){
+  /* compact controls */
+  .lang-btn{padding:0 .4rem;gap:.2rem;font-size:.72rem;font-weight:600;letter-spacing:.02em;height:32px;min-height:32px;flex:0 0 auto}
   .lang-btn .lang-globe{display:none}
-  .lang-btn .lang-caret{width:8px;height:8px}
+  .lang-btn .lang-caret{width:7px;height:7px}
   .lang-menu{right:auto;left:0;min-width:9.5rem}
-  .theme-toggle,.theme-btn{width:36px;height:36px;min-height:36px}
-  .theme-toggle svg,.theme-btn svg{width:15px;height:15px}
-  .nav-actions{gap:.45rem}
-  .pill-btn,.launch-btn{padding:0 .9rem;font-size:.78rem;white-space:nowrap}
+  .theme-toggle,.theme-btn{width:32px;height:32px;min-height:32px;flex:0 0 auto}
+  .theme-toggle svg,.theme-btn svg{width:13px;height:13px}
+  .nav-actions{gap:.35rem;flex:0 0 auto}
+  .pill-btn,.launch-btn{padding:0 .7rem;font-size:.72rem;white-space:nowrap;height:32px;min-height:32px;line-height:32px;flex:0 0 auto}
+  /* compact brand but KEEP wordmark visible */
+  .nav{gap:.4rem;padding:.65rem 0}
+  .brand{gap:.3rem;min-width:0;flex:1 1 auto;overflow:hidden}
+  .brand-mark{width:1.7rem;height:1.7rem;flex:0 0 auto}
+  .brand-mark svg{width:26px;height:26px}
+  .brand-word{font-size:.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;letter-spacing:-.02em}
+}
+@media (max-width:400px){
+  .lang-btn{padding:0 .35rem;font-size:.68rem;height:30px;min-height:30px}
+  .lang-btn .lang-caret{width:6px;height:6px}
+  .theme-toggle,.theme-btn{width:30px;height:30px;min-height:30px}
+  .theme-toggle svg,.theme-btn svg{width:12px;height:12px}
+  .nav-actions{gap:.3rem}
+  .pill-btn,.launch-btn{padding:0 .6rem;font-size:.68rem;height:30px;min-height:30px;line-height:30px}
+  .brand{gap:.25rem}
+  .brand-mark{width:1.5rem;height:1.5rem}
+  .brand-mark svg{width:24px;height:24px}
+  .brand-word{font-size:.8rem}
+}
+@media (max-width:340px){
+  .brand{gap:.2rem}
+  .brand-mark{width:1.4rem;height:1.4rem}
+  .brand-mark svg{width:22px;height:22px}
+  .brand-word{font-size:.75rem}
+  .pill-btn,.launch-btn{padding:0 .55rem;font-size:.65rem}
 }
 </style>
 <script>

@@ -3,8 +3,8 @@
 <head>
  <meta charset="UTF-8" />
  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <title>HumanVault — Live in World App</title>
- <meta name="description" content="HumanVault is live in World App and turns Safe multisig into a human-verified vault built on top of Safe and World ID." />
+ <title data-i18n="meta.indexTitle">HumanVault — Live in World App</title>
+ <meta name="description" content="HumanVault is live in World App and turns Safe multisig into a human-verified vault built on top of Safe and World ID." data-i18n="meta.indexDesc" />
  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
  <style>
   :root, [data-theme="light"] {
@@ -239,13 +239,56 @@
 
 .hero-security-claim{margin:clamp(2rem,5vw,3.5rem) auto 0;padding:clamp(1.5rem,4vw,2.75rem) 0;border-top:1px solid var(--color-divider);border-bottom:1px solid var(--color-divider);}
 .hero-security-claim p{max-width:860px;margin:0 auto;color:var(--color-text);font-size:var(--text-lg,1.25rem);line-height:1.35;font-weight:700;text-align:center;text-transform:none;letter-spacing:normal;}
+/* ── language switcher ── */
+.lang-switcher{position:relative;display:inline-block}
+.lang-btn{display:inline-flex;align-items:center;gap:.45rem;height:44px;
+  padding:0 .85rem;border:1px solid var(--color-border);
+  background:var(--color-surface-2);border-radius:var(--radius-full);
+  font-size:var(--text-sm);font-weight:700;color:var(--color-text);
+  transition:background var(--transition),transform var(--transition);
+  white-space:nowrap;line-height:1}
+.lang-btn:hover{background:var(--color-surface)}
+.lang-btn .lang-globe{flex-shrink:0;opacity:.85}
+.lang-btn .lang-caret{flex-shrink:0;opacity:.7;transition:transform var(--transition)}
+.lang-btn[aria-expanded="true"] .lang-caret{transform:rotate(180deg)}
+.lang-code{letter-spacing:.05em}
+.lang-menu{position:absolute;top:calc(100% + .5rem);right:0;
+  min-width:11.5rem;padding:.35rem;list-style:none;margin:0;
+  background:var(--color-surface-2);border:1px solid var(--color-border);
+  border-radius:var(--radius-md);box-shadow:0 10px 28px rgba(17,17,15,.12);
+  display:none;z-index:60}
+[data-theme="dark"] .lang-menu{box-shadow:0 10px 28px rgba(0,0,0,.4)}
+.lang-menu.open{display:block}
+.lang-menu li{margin:0}
+.lang-menu button{display:flex;align-items:center;justify-content:space-between;
+  gap:.6rem;width:100%;padding:.65rem .8rem;border-radius:.6rem;
+  font-size:var(--text-sm);font-weight:500;color:var(--color-text);
+  text-align:left;transition:background var(--transition)}
+.lang-menu button:hover,.lang-menu button:focus-visible{background:var(--color-bg)}
+.lang-menu button[aria-selected="true"]{font-weight:700}
+.lang-menu .lang-check{opacity:0;color:var(--color-accent);font-weight:700}
+.lang-menu button[aria-selected="true"] .lang-check{opacity:1}
+@media (max-width:480px){
+  .lang-btn{padding:0 .7rem;gap:.35rem}
+  .lang-menu{right:auto;left:0}
+}
 </style>
+<script>
+(function(){
+  try{
+    var stored = localStorage.getItem('hv_lang');
+    if(stored === 'en' || stored === 'fr' || stored === 'es'){
+      document.documentElement.setAttribute('lang', stored);
+    }
+  }catch(e){}
+})();
+</script>
 </head>
 <body>
- <a class="skip-link" href="#content">Skip to content</a>
+ <a class="skip-link" href="#content" data-i18n="nav.skipLink">Skip to content</a>
  <header class="site-header" id="top">
-  <div class="container nav" aria-label="Primary navigation">
-   <a class="brand" href="#top" aria-label="HumanVault home">
+  <div class="container nav" aria-label="Primary navigation" data-i18n-attr="aria-label:nav.primaryAria">
+   <a class="brand" href="#top" aria-label="HumanVault home" data-i18n-attr="aria-label:nav.brandAria">
     <span class="brand-mark verified-keyhole-mark" aria-hidden="true">
      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="26" height="26">
       <rect width="256" height="256" rx="52" fill="none"/>
@@ -260,17 +303,29 @@
     </span>
     <span class="brand-word">HumanVault</span>
    </a>
-   <div class="nav-links" role="list" aria-label="Section links">
-    <a href="#why">Why now</a>
-    <a href="#how">How it works</a>
-    <a href="#founder">Founder</a>
-    <a href="/contact">Contact</a>
+   <div class="nav-links" role="list" aria-label="Section links" data-i18n-attr="aria-label:nav.sectionAria">
+    <a href="#why" data-i18n="nav.why">Why now</a>
+    <a href="#how" data-i18n="nav.how">How it works</a>
+    <a href="#founder" data-i18n="nav.founder">Founder</a>
+    <a href="/contact" data-i18n="nav.contact">Contact</a>
    </div>
    <div class="nav-actions">
-    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
+    <div class="lang-switcher">
+     <button class="lang-btn" type="button" data-lang-toggle aria-haspopup="listbox" aria-expanded="false" aria-label="Select language" data-i18n-attr="aria-label:nav.langSelect">
+      <svg class="lang-globe" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/></svg>
+      <span class="lang-code" data-lang-current>EN</span>
+      <svg class="lang-caret" width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg>
+     </button>
+     <ul class="lang-menu" data-lang-menu role="listbox" aria-label="Language" data-i18n-attr="aria-label:nav.langMenu">
+      <li><button type="button" role="option" data-lang-option="en" aria-selected="true"><span>English</span><span class="lang-check" aria-hidden="true">✓</span></button></li>
+      <li><button type="button" role="option" data-lang-option="fr" aria-selected="false"><span>Français</span><span class="lang-check" aria-hidden="true">✓</span></button></li>
+      <li><button type="button" role="option" data-lang-option="es" aria-selected="false"><span>Español</span><span class="lang-check" aria-hidden="true">✓</span></button></li>
+     </ul>
+    </div>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" data-i18n-attr="aria-label:nav.themeSwitch">
      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
-    <a class="pill-btn" href="https://world.org/" target="_blank" rel="noopener noreferrer">Open the app</a>
+    <a class="pill-btn" href="https://world.org/" target="_blank" rel="noopener noreferrer" data-i18n="nav.openApp">Open the app</a>
    </div>
   </div>
  </header>
@@ -278,20 +333,20 @@
  <main id="content">
   <section class="hero">
    <div class="container">
-    <span class="eyebrow reveal"><span class="eyebrow-dot"></span>A multisig vault that only real humans can sign.</span>
+    <span class="eyebrow reveal"><span class="eyebrow-dot"></span><span data-i18n="hero.eyebrow">A multisig vault that only real humans can sign.</span></span>
     <div class="hero-grid">
      <div class="hero-copy reveal">
-      <h1>Shared Vaults. Real humans. Every approval.</h1>
-      <p>Built for families, investment clubs, and DAOs who share funds. No browser extensions, no duplicate accounts. Every signer is a real, unique person, verified by World ID before each signature.</p>
+      <h1 data-i18n="hero.h1">Shared Vaults. Real humans. Every approval.</h1>
+      <p data-i18n="hero.p">Built for families, investment clubs, and DAOs who share funds. No browser extensions, no duplicate accounts. Every signer is a real, unique person, verified by World ID before each signature.</p>
      
       <div class="hero-actions">
-       <a class="pill-btn" href="https://world.org/mini-app?app_id=app_82d5214dec1f633f7ea0dc61964d60d0&amp;path=&amp;draft_id=meta_4809bf02db777a9fc4b2a94e59b0f40f" target="_blank" rel="noopener noreferrer">Launch HumanVault</a>
-       <a class="ghost-btn" href="#how">See how it works</a>
+       <a class="pill-btn" href="https://world.org/mini-app?app_id=app_82d5214dec1f633f7ea0dc61964d60d0&amp;path=&amp;draft_id=meta_4809bf02db777a9fc4b2a94e59b0f40f" target="_blank" rel="noopener noreferrer" data-i18n="hero.launch">Launch HumanVault</a>
+       <a class="ghost-btn" href="#how" data-i18n="hero.see">See how it works</a>
       </div>
      </div>
      <div class="hero-visual reveal">
-  <aside class="hero-card" aria-label="Vault preview">
-  <span class="status-chip">World ID verified vault</span>
+  <aside class="hero-card" aria-label="Vault preview" data-i18n-attr="aria-label:hero.vaultPreview">
+  <span class="status-chip" data-i18n="hero.verifiedVault">World ID verified vault</span>
 
   <div class="vault-visual">
     <div class="vault-signer-summary">
@@ -300,8 +355,8 @@
         <span>2 of 2</span>
       </div>
       <div class="vault-signer-sub">
-        <span>Vault signers</span>
-        <span>required</span>
+        <span data-i18n="hero.signers">Vault signers</span>
+        <span data-i18n="hero.required">required</span>
       </div>
     </div>
   </div>
@@ -310,50 +365,50 @@
     <div class="mini-panel">
       <div class="mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21H4a1 1 0 0 1-1-1V8l9-5 9 5v12a1 1 0 0 1-1 1Z"/><path d="M9 21v-6h6v6"/></svg></div>
       <div>
-        <div class="mini-label">Infrastructure</div>
-        <div class="mini-value">Safe smart account</div>
+        <div class="mini-label" data-i18n="hero.infraLabel">Infrastructure</div>
+        <div class="mini-value" data-i18n="hero.infraVal">Safe smart account</div>
       </div>
-      <div class="mini-label">Live</div>
+      <div class="mini-label" data-i18n="hero.infraTag">Live</div>
     </div>
 
     <div class="mini-panel">
       <div class="mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.2"/></svg></div>
       <div>
-        <div class="mini-label">Human check</div>
-        <div class="mini-value">World ID before every signature</div>
+        <div class="mini-label" data-i18n="hero.humanLabel">Human check</div>
+        <div class="mini-value" data-i18n="hero.humanVal">World ID before every signature</div>
       </div>
-      <div class="mini-label">Required</div>
+      <div class="mini-label" data-i18n="hero.humanTag">Required</div>
     </div>
 
     <div class="mini-panel">
       <div class="mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M3 12h18"/></svg></div>
       <div>
-        <div class="mini-label">Experience</div>
-        <div class="mini-value">Feels like messaging, not signing transactions</div>
+        <div class="mini-label" data-i18n="hero.expLabel">Experience</div>
+        <div class="mini-value" data-i18n="hero.expVal">Feels like messaging, not signing transactions</div>
       </div>
-      <div class="mini-label">Simple</div>
+      <div class="mini-label" data-i18n="hero.expTag">Simple</div>
     </div>
 
     <div class="mini-panel">
       <div class="mini-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 22V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/><path d="M3 22h12"/><path d="M15 8h2a2 2 0 0 1 2 2v3a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V9l-3-3"/><path d="M7 6v4"/></svg></div>
       <div>
-        <div class="mini-label">Gas</div>
-        <div class="mini-value">Sponsored on World Chain</div>
+        <div class="mini-label" data-i18n="hero.gasLabel">Gas</div>
+        <div class="mini-value" data-i18n="hero.gasVal">Sponsored on World Chain</div>
       </div>
-      <div class="mini-label">Free</div>
+      <div class="mini-label" data-i18n="hero.gasTag">Free</div>
     </div>
   </div>
 </aside>
-  <p class="hero-preview-cue">Live preview — what you'll see in World App</p>
+  <p class="hero-preview-cue" data-i18n="hero.previewCue">Live preview — what you'll see in World App</p>
 </div>
     </div>
 
     
-<div class="hero-security-claim reveal" aria-label="Security claim">
-  <p>Built on Safe — and locked to verified humans. Signer impersonation, the most common attack class against multisigs, is blocked by design.</p>
+<div class="hero-security-claim reveal" aria-label="Security claim" data-i18n-attr="aria-label:security.ariaClaim">
+  <p data-i18n="security.claim">Built on Safe — and locked to verified humans. Signer impersonation, the most common attack class against multisigs, is blocked by design.</p>
 </div>
-<div class="logo-band reveal" aria-label="Built on platform logos">
-     <span class="logo-band-label">Built on Safe and World ID.</span>
+<div class="logo-band reveal" aria-label="Built on platform logos" data-i18n-attr="aria-label:band.aria">
+     <span class="logo-band-label" data-i18n="band.label">Built on Safe and World ID.</span>
      <div class="logo-row">
       <div class="logo-card" aria-label="Safe logo">
        <div class="safe-logo">
@@ -376,31 +431,31 @@
    <div class="container">
     <div class="section-head reveal">
      <div>
-      <h2>Why this matters now.</h2>
+      <h2 data-i18n="why.h2">Why this matters now.</h2>
      </div>
-     <p>AI broke the old trust model. Human Vault anchors every outbound transfer to a unique, verified person — not just a device or a key.</p>
+     <p data-i18n="why.intro">AI broke the old trust model. Human Vault anchors every outbound transfer to a unique, verified person — not just a device or a key.</p>
     </div>
     <div class="signal-grid">
      <article class="signal-card reveal">
       <div>
-       <div class="signal-label">Threat model</div>
-       <div class="signal-number">AI</div>
+       <div class="signal-label" data-i18n="why.threatLabel">Threat model</div>
+       <div class="signal-number" data-i18n="why.threatNum">AI</div>
       </div>
-      <p class="signal-copy">When faces and voices can be faked, identity needs stronger proof than what shows up on a screen.</p>
+      <p class="signal-copy" data-i18n="why.threatCopy">When faces and voices can be faked, identity needs stronger proof than what shows up on a screen.</p>
      </article>
      <article class="signal-card reveal">
       <div>
-       <div class="signal-label">Execution rule</div>
-       <div class="signal-number">Human</div>
+       <div class="signal-label" data-i18n="why.execLabel">Execution rule</div>
+       <div class="signal-number" data-i18n="why.execNum">Human</div>
       </div>
-      <p class="signal-copy">Deposits stay easy. Money cannot leave the Vault until each required signer passes World ID verification.</p>
+      <p class="signal-copy" data-i18n="why.execCopy">Deposits stay easy. Money cannot leave the Vault until each required signer passes World ID verification.</p>
      </article>
      <article class="signal-card reveal">
       <div>
-       <div class="signal-label">User experience</div>
-       <div class="signal-number">Social</div>
+       <div class="signal-label" data-i18n="why.uxLabel">User experience</div>
+       <div class="signal-number" data-i18n="why.uxNum">Social</div>
       </div>
-      <p class="signal-copy">The goal is simple: multisig should feel social and obvious, not like juggling browser extensions and hardware wallets.</p>
+      <p class="signal-copy" data-i18n="why.uxCopy">The goal is simple: multisig should feel social and obvious, not like juggling browser extensions and hardware wallets.</p>
      </article>
     </div>
    </div>
@@ -409,30 +464,30 @@
   <section>
    <div class="container story-layout">
     <article class="story-card reveal">
-     <h3>What HumanVault changes</h3>
-     <p class="muted">Instead of trusting keys alone, every signature gets paired with proof of humanity. That makes the vault infrastructure harder to socially engineer and much easier to understand.</p>
+     <h3 data-i18n="story.changesH3">What HumanVault changes</h3>
+     <p class="muted" data-i18n="story.changesP">Instead of trusting keys alone, every signature gets paired with proof of humanity. That makes the vault infrastructure harder to socially engineer and much easier to understand.</p>
      <div class="story-list">
       <div class="story-item">
-       <strong>Safe underneath.</strong>
-       <span class="muted">The vault sits on Safe infrastructure, so the smart account layer stays familiar and robust.</span>
+       <strong data-i18n="story.safeStrong">Safe underneath.</strong>
+       <span class="muted" data-i18n="story.safeText">The vault sits on Safe infrastructure, so the smart account layer stays familiar and robust.</span>
       </div>
       <div class="story-item">
-       <strong>World ID before every signature.</strong>
-       <span class="muted">Every required signer re-verifies their World ID for that exact transaction — proofs cannot be reused.</span>
+       <strong data-i18n="story.worldStrong">World ID before every signature.</strong>
+       <span class="muted" data-i18n="story.worldText">Every required signer re-verifies their World ID for that exact transaction — proofs cannot be reused.</span>
       </div>
       <div class="story-item">
-       <strong>Less friction for the right actions.</strong>
-       <span class="muted">Anyone can deposit. Outbound transfers trigger the human checks that actually matter.</span>
+       <strong data-i18n="story.frictionStrong">Less friction for the right actions.</strong>
+       <span class="muted" data-i18n="story.frictionText">Anyone can deposit. Outbound transfers trigger the human checks that actually matter.</span>
       </div>
      </div>
     </article>
     <article class="story-card reveal">
-     <h3>Designed for shared signers</h3>
-     <p class="muted">Think of a family treasury, a startup ops wallet, or an investment club. Human Vault turns the approval loop into a clean invite, confirm, sign, and execute flow — no matter how many signers you add.</p>
+     <h3 data-i18n="story.sharedH3">Designed for shared signers</h3>
+     <p class="muted" data-i18n="story.sharedP">Think of a family treasury, a startup ops wallet, or an investment club. Human Vault turns the approval loop into a clean invite, confirm, sign, and execute flow — no matter how many signers you add.</p>
      <div class="check-list">
-      <div class="check-item"><span class="check-mark">✓</span><span>Invite the people you trust to share the Vault.</span></div>
-      <div class="check-item"><span class="check-mark">✓</span><span>Choose how many approvals it takes to send funds.</span></div>
-      <div class="check-item"><span class="check-mark">✓</span><span>Approve and sign only after identity is re-verified.</span></div>
+      <div class="check-item"><span class="check-mark">✓</span><span data-i18n="story.check1">Invite the people you trust to share the Vault.</span></div>
+      <div class="check-item"><span class="check-mark">✓</span><span data-i18n="story.check2">Choose how many approvals it takes to send funds.</span></div>
+      <div class="check-item"><span class="check-mark">✓</span><span data-i18n="story.check3">Approve and sign only after identity is re-verified.</span></div>
      </div>
     </article>
    </div>
@@ -442,30 +497,30 @@
    <div class="container">
     <div class="section-head reveal">
      <div>
-      <h2>How the demo flow works.</h2>
+      <h2 data-i18n="how.h2">How the demo flow works.</h2>
      </div>
-     <p>The product demo is built around one core idea: creation feels easy, while outgoing value gets gated by verified humans at the exact moment it matters.</p>
+     <p data-i18n="how.intro">The product demo is built around one core idea: creation feels easy, while outgoing value gets gated by verified humans at the exact moment it matters.</p>
     </div>
     <div class="timeline">
      <article class="timeline-card reveal">
       <div class="timeline-step">01</div>
-      <h3>Verify and enter</h3>
-      <p class="muted">You sign in with your World App wallet and verify your World ID once — this registers you on-chain so you can create or join Vaults.</p>
+      <h3 data-i18n="how.s1H3">Verify and enter</h3>
+      <p class="muted" data-i18n="how.s1P">You sign in with your World App wallet and verify your World ID once — this registers you on-chain so you can create or join Vaults.</p>
      </article>
      <article class="timeline-card reveal">
       <div class="timeline-step">02</div>
-      <h3>Create the Vault</h3>
-      <p class="muted">Name the Vault, pick your signers, set the threshold, and deploy — gas is sponsored.</p>
+      <h3 data-i18n="how.s2H3">Create the Vault</h3>
+      <p class="muted" data-i18n="how.s2P">Name the Vault, pick your signers, set the threshold, and deploy — gas is sponsored.</p>
      </article>
      <article class="timeline-card reveal">
       <div class="timeline-step">03</div>
-      <h3>Invite your signers</h3>
-      <p class="muted">Each invited signer opens World App, confirms they're a real person, and joins the shared Vault.</p>
+      <h3 data-i18n="how.s3H3">Invite your signers</h3>
+      <p class="muted" data-i18n="how.s3P">Each invited signer opens World App, confirms they're a real person, and joins the shared Vault.</p>
      </article>
      <article class="timeline-card reveal">
       <div class="timeline-step">04</div>
-      <h3>Sign and execute</h3>
-      <p class="muted">To send funds, each required signer confirms they're a real person, signs, and executes together. Every transfer needs a fresh check — past approvals can't be reused.</p>
+      <h3 data-i18n="how.s4H3">Sign and execute</h3>
+      <p class="muted" data-i18n="how.s4P">To send funds, each required signer confirms they're a real person, signs, and executes together. Every transfer needs a fresh check — past approvals can't be reused.</p>
      </article>
     </div>
    </div>
@@ -474,22 +529,22 @@
   <section id="founder">
    <div class="container founder-grid">
     <article class="founder-card reveal">
-     <div class="signal-label">Founder context</div>
-     <p class="quote">Built by someone who already made password security mainstream.</p>
-     <p class="muted">Dan previously built PasswordBox from zero to 16 million users in 18 months, then sold it to Intel. Some of the team’s patents went on to help shape the PassKey experience used across major consumer products.</p>
+     <div class="signal-label" data-i18n="founder.label">Founder context</div>
+     <p class="quote" data-i18n="founder.quote">Built by someone who already made password security mainstream.</p>
+     <p class="muted" data-i18n="founder.p">Dan previously built PasswordBox from zero to 16 million users in 18 months, then sold it to Intel. Some of the team’s patents went on to help shape the PassKey experience used across major consumer products.</p>
      <div class="stat-row">
-      <div class="stat"><span class="signal-label">Users</span><strong>16M</strong><span class="muted">in 18 months</span></div>
-      <div class="stat"><span class="signal-label">Outcome</span><strong>Intel</strong><span class="muted">acquisition</span></div>
-      <div class="stat"><span class="signal-label">Thesis</span><strong>Human-first</strong><span class="muted">security layer</span></div>
+      <div class="stat"><span class="signal-label" data-i18n="founder.usersL">Users</span><strong>16M</strong><span class="muted" data-i18n="founder.usersSub">in 18 months</span></div>
+      <div class="stat"><span class="signal-label" data-i18n="founder.outcomeL">Outcome</span><strong>Intel</strong><span class="muted" data-i18n="founder.outcomeSub">acquisition</span></div>
+      <div class="stat"><span class="signal-label" data-i18n="founder.thesisL">Thesis</span><strong data-i18n="founder.thesisVal">Human-first</strong><span class="muted" data-i18n="founder.thesisSub">security layer</span></div>
      </div>
     </article>
     <article class="founder-card reveal">
-     <h3>The core promise</h3>
-     <p class="muted">HumanVault is positioned as the first Safe vault where every required signature comes with biometric-backed proof of humanity. That shifts multisig from “who controls the key” to “which real person is actually approving this right now.”</p>
+     <h3 data-i18n="founder.promiseH3">The core promise</h3>
+     <p class="muted" data-i18n="founder.promiseP">HumanVault is positioned as the first Safe vault where every required signature comes with biometric-backed proof of humanity. That shifts multisig from “who controls the key” to “which real person is actually approving this right now.”</p>
      <div class="check-list">
-      <div class="check-item"><span class="check-mark">01</span><span>More trust for treasury and shared-wallet approvals.</span></div>
-      <div class="check-item"><span class="check-mark">02</span><span>Less room for deepfake-led social engineering.</span></div>
-      <div class="check-item"><span class="check-mark">03</span><span>Mobile-first, native to World App — no extensions, no second account, no seed phrase to manage.</span></div>
+      <div class="check-item"><span class="check-mark">01</span><span data-i18n="founder.list1">More trust for treasury and shared-wallet approvals.</span></div>
+      <div class="check-item"><span class="check-mark">02</span><span data-i18n="founder.list2">Less room for deepfake-led social engineering.</span></div>
+      <div class="check-item"><span class="check-mark">03</span><span data-i18n="founder.list3">Mobile-first, native to World App — no extensions, no second account, no seed phrase to manage.</span></div>
      </div>
     </article>
    </div>
@@ -498,14 +553,14 @@
   <section id="cta">
    <div class="container">
     <div class="cta-wrap reveal">
-     <div class="signal-label" style="color: inherit; opacity: .72;">HumanVault</div>
-     <h2>Make your next multisig feel human.</h2>
-     <p><strong>HUMANVAULT is privacy-first.</strong><br>We use World ID to prove a signer is a real, unique human without revealing their identity.<br>No name, email, phone number, or identity document is needed to sign a transaction.</p>
-     <p>HumanVault is available now inside World App. Bring proof of humanity into the vault layer, keep Safe underneath, and give every signer a flow that feels obvious from the first invite to the final execution.</p>
+     <div class="signal-label" style="color: inherit; opacity: .72;" data-i18n="cta.label">HumanVault</div>
+     <h2 data-i18n="cta.h2">Make your next multisig feel human.</h2>
+     <p><strong data-i18n="cta.privacy">HUMANVAULT is privacy-first.</strong><br><span data-i18n="cta.privacyLine1">We use World ID to prove a signer is a real, unique human without revealing their identity.</span><br><span data-i18n="cta.privacyLine2">No name, email, phone number, or identity document is needed to sign a transaction.</span></p>
+     <p data-i18n="cta.p2">HumanVault is available now inside World App. Bring proof of humanity into the vault layer, keep Safe underneath, and give every signer a flow that feels obvious from the first invite to the final execution.</p>
      <div class="cta-actions">
-      <a class="pill-btn" href="https://world.org/" target="_blank" rel="noopener noreferrer">Open in World App</a>
-      <a class="ghost-btn" href="#top">Back to top</a>
-      <a class="ghost-btn" href="/contact">Contact us</a>
+      <a class="pill-btn" href="https://world.org/" target="_blank" rel="noopener noreferrer" data-i18n="cta.openApp">Open in World App</a>
+      <a class="ghost-btn" href="#top" data-i18n="cta.top">Back to top</a>
+      <a class="ghost-btn" href="/contact" data-i18n="cta.contact">Contact us</a>
      </div>
     </div>
    </div>
@@ -529,13 +584,145 @@
     </span>
     <div>
      <div style="font-weight:700;color:var(--color-text);">HumanVault</div>
-     <div>Proof of humanity for Safe multisig.</div>
+     <div data-i18n="footer.tagline">Proof of humanity for Safe multisig.</div>
     </div>
    </div>
-   <div>Built for a world where keys alone are not enough.</div>
+   <div data-i18n="footer.built">Built for a world where keys alone are not enough.</div>
   </div>
  </footer>
 
+ <script>
+/* HumanVault i18n runtime — EN / FR / ES */
+(function(){
+  var T = {"en": {"meta.indexTitle": "HumanVault — Live in World App", "meta.indexDesc": "HumanVault is live in World App and turns Safe multisig into a human-verified vault built on top of Safe and World ID.", "meta.contactTitle": "Contact us — HumanVault", "meta.contactDesc": "Have a question about Human Vault? Send us a message and we'll get back to you.", "nav.why": "Why now", "nav.how": "How it works", "nav.founder": "Founder", "nav.contact": "Contact", "nav.launch": "Launch HumanVault", "nav.openApp": "Open the app", "nav.skipLink": "Skip to content", "nav.themeSwitch": "Switch theme", "nav.toDark": "Switch to dark mode", "nav.toLight": "Switch to light mode", "nav.brandAria": "HumanVault home", "nav.primaryAria": "Primary navigation", "nav.sectionAria": "Section links", "nav.langSelect": "Select language", "nav.langMenu": "Language", "hero.eyebrow": "A multisig vault that only real humans can sign.", "hero.h1": "Shared Vaults. Real humans. Every approval.", "hero.p": "Built for families, investment clubs, and DAOs who share funds. No browser extensions, no duplicate accounts. Every signer is a real, unique person, verified by World ID before each signature.", "hero.launch": "Launch HumanVault", "hero.see": "See how it works", "hero.vaultPreview": "Vault preview", "hero.verifiedVault": "World ID verified vault", "hero.signers": "Vault signers", "hero.required": "required", "hero.infraLabel": "Infrastructure", "hero.infraVal": "Safe smart account", "hero.infraTag": "Live", "hero.humanLabel": "Human check", "hero.humanVal": "World ID before every signature", "hero.humanTag": "Required", "hero.expLabel": "Experience", "hero.expVal": "Feels like messaging, not signing transactions", "hero.expTag": "Simple", "hero.gasLabel": "Gas", "hero.gasVal": "Sponsored on World Chain", "hero.gasTag": "Free", "hero.previewCue": "Live preview — what you'll see in World App", "security.claim": "Built on Safe — and locked to verified humans. Signer impersonation, the most common attack class against multisigs, is blocked by design.", "security.ariaClaim": "Security claim", "band.label": "Built on Safe and World ID.", "band.aria": "Built on platform logos", "why.h2": "Why this matters now.", "why.intro": "AI broke the old trust model. Human Vault anchors every outbound transfer to a unique, verified person — not just a device or a key.", "why.threatLabel": "Threat model", "why.threatNum": "AI", "why.threatCopy": "When faces and voices can be faked, identity needs stronger proof than what shows up on a screen.", "why.execLabel": "Execution rule", "why.execNum": "Human", "why.execCopy": "Deposits stay easy. Money cannot leave the Vault until each required signer passes World ID verification.", "why.uxLabel": "User experience", "why.uxNum": "Social", "why.uxCopy": "The goal is simple: multisig should feel social and obvious, not like juggling browser extensions and hardware wallets.", "story.changesH3": "What HumanVault changes", "story.changesP": "Instead of trusting keys alone, every signature gets paired with proof of humanity. That makes the vault infrastructure harder to socially engineer and much easier to understand.", "story.safeStrong": "Safe underneath.", "story.safeText": "The vault sits on Safe infrastructure, so the smart account layer stays familiar and robust.", "story.worldStrong": "World ID before every signature.", "story.worldText": "Every required signer re-verifies their World ID for that exact transaction — proofs cannot be reused.", "story.frictionStrong": "Less friction for the right actions.", "story.frictionText": "Anyone can deposit. Outbound transfers trigger the human checks that actually matter.", "story.sharedH3": "Designed for shared signers", "story.sharedP": "Think of a family treasury, a startup ops wallet, or an investment club. Human Vault turns the approval loop into a clean invite, confirm, sign, and execute flow — no matter how many signers you add.", "story.check1": "Invite the people you trust to share the Vault.", "story.check2": "Choose how many approvals it takes to send funds.", "story.check3": "Approve and sign only after identity is re-verified.", "how.h2": "How the demo flow works.", "how.intro": "The product demo is built around one core idea: creation feels easy, while outgoing value gets gated by verified humans at the exact moment it matters.", "how.s1H3": "Verify and enter", "how.s1P": "You sign in with your World App wallet and verify your World ID once — this registers you on-chain so you can create or join Vaults.", "how.s2H3": "Create the Vault", "how.s2P": "Name the Vault, pick your signers, set the threshold, and deploy — gas is sponsored.", "how.s3H3": "Invite your signers", "how.s3P": "Each invited signer opens World App, confirms they're a real person, and joins the shared Vault.", "how.s4H3": "Sign and execute", "how.s4P": "To send funds, each required signer confirms they're a real person, signs, and executes together. Every transfer needs a fresh check — past approvals can't be reused.", "founder.label": "Founder context", "founder.quote": "Built by someone who already made password security mainstream.", "founder.p": "Dan previously built PasswordBox from zero to 16 million users in 18 months, then sold it to Intel. Some of the team's patents went on to help shape the PassKey experience used across major consumer products.", "founder.usersL": "Users", "founder.usersSub": "in 18 months", "founder.outcomeL": "Outcome", "founder.outcomeSub": "acquisition", "founder.thesisL": "Thesis", "founder.thesisVal": "Human-first", "founder.thesisSub": "security layer", "founder.promiseH3": "The core promise", "founder.promiseP": "HumanVault is positioned as the first Safe vault where every required signature comes with biometric-backed proof of humanity. That shifts multisig from “who controls the key” to “which real person is actually approving this right now.”", "founder.list1": "More trust for treasury and shared-wallet approvals.", "founder.list2": "Less room for deepfake-led social engineering.", "founder.list3": "Mobile-first, native to World App — no extensions, no second account, no seed phrase to manage.", "cta.label": "HumanVault", "cta.h2": "Make your next multisig feel human.", "cta.privacy": "HUMANVAULT is privacy-first.", "cta.privacyLine1": "We use World ID to prove a signer is a real, unique human without revealing their identity.", "cta.privacyLine2": "No name, email, phone number, or identity document is needed to sign a transaction.", "cta.p2": "HumanVault is available now inside World App. Bring proof of humanity into the vault layer, keep Safe underneath, and give every signer a flow that feels obvious from the first invite to the final execution.", "cta.openApp": "Open in World App", "cta.top": "Back to top", "cta.contact": "Contact us", "footer.tagline": "Proof of humanity for Safe multisig.", "footer.built": "Built for a world where keys alone are not enough.", "contact.eyebrow": "Contact", "contact.h1": "Contact us", "contact.intro": "Have a question about Human Vault? Send us a message and we'll get back to you.", "contact.whatH2": "What to write about", "contact.whatP": "Use the form for product questions, bug reports, partnership inquiries, or anything else.", "contact.bugStrong": "Bug reports", "contact.bugText": "Tell us what happened, what you expected, and the device or browser you used.", "contact.prodStrong": "Product questions", "contact.prodText": "Ask about setup, signer flows, or how HumanVault works inside World App.", "contact.inboxStrong": "Direct inbox", "contact.sendH2": "Send a message", "contact.sendP": "Submitted securely to our server — no email app required.", "contact.nameLabel": "Name", "contact.nameErr": "Please enter your name.", "contact.emailLabel": "Email", "contact.emailErr": "Please enter a valid email address.", "contact.subjectLabel": "Subject", "contact.optionalPh": "Optional", "contact.msgLabel": "Message", "contact.msgErr": "Please enter a message.", "contact.send": "Send message", "contact.sending": "Sending…", "contact.reqNote": "Fields marked", "contact.reqNote2": "are required.", "contact.asterisk": "with an asterisk", "contact.okMsg": "Thanks — your message has been sent.", "contact.errMsg": "Something went wrong. Please try again."}, "fr": {"meta.indexTitle": "HumanVault — Disponible dans World App", "meta.indexDesc": "HumanVault est disponible dans World App et transforme le multisignature Safe en un coffre vérifié par des humains, construit sur Safe et World ID.", "meta.contactTitle": "Nous contacter — HumanVault", "meta.contactDesc": "Une question sur Human Vault ? Envoyez-nous un message, nous vous répondrons rapidement.", "nav.why": "Pourquoi maintenant", "nav.how": "Fonctionnement", "nav.founder": "Fondateur", "nav.contact": "Contact", "nav.launch": "Lancer HumanVault", "nav.openApp": "Ouvrir l'app", "nav.skipLink": "Aller au contenu", "nav.themeSwitch": "Changer de thème", "nav.toDark": "Passer au mode sombre", "nav.toLight": "Passer au mode clair", "nav.brandAria": "Accueil HumanVault", "nav.primaryAria": "Navigation principale", "nav.sectionAria": "Liens de section", "nav.langSelect": "Choisir la langue", "nav.langMenu": "Langue", "hero.eyebrow": "Un coffre multisignature que seuls des humains réels peuvent signer.", "hero.h1": "Coffres partagés. Humains réels. À chaque approbation.", "hero.p": "Conçu pour les familles, les clubs d'investissement et les DAO qui partagent des fonds. Pas d'extensions de navigateur, pas de comptes en double. Chaque signataire est une personne réelle et unique, vérifiée par World ID avant chaque signature.", "hero.launch": "Lancer HumanVault", "hero.see": "Voir le fonctionnement", "hero.vaultPreview": "Aperçu du coffre", "hero.verifiedVault": "Coffre vérifié par World ID", "hero.signers": "Signataires du coffre", "hero.required": "requis", "hero.infraLabel": "Infrastructure", "hero.infraVal": "Compte intelligent Safe", "hero.infraTag": "Actif", "hero.humanLabel": "Vérification humaine", "hero.humanVal": "World ID avant chaque signature", "hero.humanTag": "Requis", "hero.expLabel": "Expérience", "hero.expVal": "Aussi simple qu'envoyer un message, pas signer des transactions", "hero.expTag": "Simple", "hero.gasLabel": "Frais de gaz", "hero.gasVal": "Pris en charge sur World Chain", "hero.gasTag": "Gratuit", "hero.previewCue": "Aperçu en direct — ce que vous verrez dans World App", "security.claim": "Construit sur Safe — et réservé à des humains vérifiés. L'usurpation d'identité de signataire, la classe d'attaque la plus courante contre les multisignatures, est bloquée par conception.", "security.ariaClaim": "Promesse de sécurité", "band.label": "Construit sur Safe et World ID.", "band.aria": "Logos des plateformes partenaires", "why.h2": "Pourquoi c'est important maintenant.", "why.intro": "L'IA a brisé l'ancien modèle de confiance. Human Vault relie chaque transfert sortant à une personne unique et vérifiée — et pas seulement à un appareil ou à une clé.", "why.threatLabel": "Modèle de menace", "why.threatNum": "IA", "why.threatCopy": "Quand visages et voix peuvent être falsifiés, l'identité exige des preuves plus solides que ce qui s'affiche à l'écran.", "why.execLabel": "Règle d'exécution", "why.execNum": "Humain", "why.execCopy": "Les dépôts restent simples. Aucun fonds ne peut quitter le coffre tant que chaque signataire requis n'a pas passé la vérification World ID.", "why.uxLabel": "Expérience utilisateur", "why.uxNum": "Social", "why.uxCopy": "L'objectif est simple : la multisignature doit sembler sociale et évidente, sans jongler entre extensions de navigateur et portefeuilles matériels.", "story.changesH3": "Ce que change HumanVault", "story.changesP": "Plutôt que de se fier uniquement aux clés, chaque signature est jumelée à une preuve d'humanité. L'infrastructure du coffre devient ainsi plus difficile à manipuler socialement et bien plus facile à comprendre.", "story.safeStrong": "Safe en arrière-plan.", "story.safeText": "Le coffre repose sur l'infrastructure Safe : la couche de compte intelligent reste familière et robuste.", "story.worldStrong": "World ID avant chaque signature.", "story.worldText": "Chaque signataire requis revérifie son World ID pour cette transaction précise — les preuves ne peuvent être réutilisées.", "story.frictionStrong": "Moins de friction pour les bonnes actions.", "story.frictionText": "Tout le monde peut déposer. Les transferts sortants déclenchent les vérifications humaines qui comptent vraiment.", "story.sharedH3": "Pensé pour les signataires partagés", "story.sharedP": "Pensez à une trésorerie familiale, un portefeuille opérationnel de startup ou un club d'investissement. Human Vault transforme la boucle d'approbation en un flux clair : inviter, confirmer, signer, exécuter — quel que soit le nombre de signataires.", "story.check1": "Invitez les personnes en qui vous avez confiance à partager le coffre.", "story.check2": "Choisissez combien d'approbations sont nécessaires pour envoyer des fonds.", "story.check3": "Approuvez et signez uniquement après revérification de l'identité.", "how.h2": "Le fonctionnement de la démo.", "how.intro": "La démo produit s'articule autour d'une idée centrale : la création reste simple, tandis que toute sortie de valeur est verrouillée par des humains vérifiés au moment exact où cela compte.", "how.s1H3": "Vérifier et entrer", "how.s1P": "Vous vous connectez avec votre portefeuille World App et vérifiez votre World ID une fois — cela vous enregistre on-chain pour créer ou rejoindre des coffres.", "how.s2H3": "Créer le coffre", "how.s2P": "Nommez le coffre, choisissez vos signataires, fixez le seuil et déployez — les frais de gaz sont pris en charge.", "how.s3H3": "Inviter vos signataires", "how.s3P": "Chaque signataire invité ouvre World App, confirme qu'il est une personne réelle et rejoint le coffre partagé.", "how.s4H3": "Signer et exécuter", "how.s4P": "Pour envoyer des fonds, chaque signataire requis confirme qu'il est une personne réelle, signe et exécute avec les autres. Chaque transfert exige une nouvelle vérification — les approbations passées ne peuvent être réutilisées.", "founder.label": "Le fondateur", "founder.quote": "Conçu par quelqu'un qui a déjà rendu la sécurité des mots de passe accessible au grand public.", "founder.p": "Dan a auparavant fondé PasswordBox, qu'il a fait passer de zéro à 16 millions d'utilisateurs en 18 mois, avant de le revendre à Intel. Certains brevets de l'équipe ont ensuite contribué à façonner l'expérience PassKey utilisée dans de grands produits grand public.", "founder.usersL": "Utilisateurs", "founder.usersSub": "en 18 mois", "founder.outcomeL": "Issue", "founder.outcomeSub": "acquisition", "founder.thesisL": "Thèse", "founder.thesisVal": "L'humain d'abord", "founder.thesisSub": "couche de sécurité", "founder.promiseH3": "Notre promesse fondamentale", "founder.promiseP": "HumanVault se positionne comme le premier coffre Safe où chaque signature requise s'accompagne d'une preuve d'humanité validée biométriquement. La multisignature passe ainsi de « qui contrôle la clé » à « quelle personne réelle approuve réellement cette transaction en ce moment précis ».", "founder.list1": "Plus de confiance pour les approbations de trésorerie et de portefeuilles partagés.", "founder.list2": "Moins de place pour l'ingénierie sociale alimentée par les deepfakes.", "founder.list3": "Pensé pour le mobile, natif à World App — pas d'extensions, pas de second compte, pas de phrase de récupération à gérer.", "cta.label": "HumanVault", "cta.h2": "Donnez une dimension humaine à votre prochaine multisignature.", "cta.privacy": "HUMANVAULT respecte d'abord votre vie privée.", "cta.privacyLine1": "Nous utilisons World ID pour prouver qu'un signataire est une personne réelle et unique, sans révéler son identité.", "cta.privacyLine2": "Aucun nom, e-mail, numéro de téléphone ou pièce d'identité n'est requis pour signer une transaction.", "cta.p2": "HumanVault est disponible dès maintenant dans World App. Apportez la preuve d'humanité à la couche du coffre, gardez Safe en dessous, et offrez à chaque signataire un parcours limpide, de la première invitation à l'exécution finale.", "cta.openApp": "Ouvrir dans World App", "cta.top": "Retour en haut", "cta.contact": "Nous contacter", "footer.tagline": "Preuve d'humanité pour la multisignature Safe.", "footer.built": "Conçu pour un monde où les clés ne suffisent plus.", "contact.eyebrow": "Contact", "contact.h1": "Nous contacter", "contact.intro": "Une question sur Human Vault ? Envoyez-nous un message, nous vous répondrons rapidement.", "contact.whatH2": "Ce que vous pouvez nous écrire", "contact.whatP": "Utilisez le formulaire pour toute question sur le produit, signalement de bug, demande de partenariat ou autre.", "contact.bugStrong": "Signaler un bug", "contact.bugText": "Décrivez ce qui s'est passé, ce que vous attendiez, ainsi que l'appareil ou le navigateur utilisé.", "contact.prodStrong": "Questions produit", "contact.prodText": "Demandez-nous des informations sur la configuration, les parcours de signataires ou le fonctionnement de HumanVault dans World App.", "contact.inboxStrong": "Adresse directe", "contact.sendH2": "Envoyer un message", "contact.sendP": "Envoyé en toute sécurité vers notre serveur — aucune application de messagerie requise.", "contact.nameLabel": "Nom", "contact.nameErr": "Veuillez saisir votre nom.", "contact.emailLabel": "E-mail", "contact.emailErr": "Veuillez saisir une adresse e-mail valide.", "contact.subjectLabel": "Sujet", "contact.optionalPh": "Facultatif", "contact.msgLabel": "Message", "contact.msgErr": "Veuillez saisir un message.", "contact.send": "Envoyer le message", "contact.sending": "Envoi…", "contact.reqNote": "Les champs marqués", "contact.reqNote2": "sont obligatoires.", "contact.asterisk": "d'un astérisque", "contact.okMsg": "Merci — votre message a bien été envoyé.", "contact.errMsg": "Une erreur est survenue. Veuillez réessayer."}, "es": {"meta.indexTitle": "HumanVault — Disponible en World App", "meta.indexDesc": "HumanVault está disponible en World App y convierte la multifirma de Safe en una bóveda verificada por humanos, construida sobre Safe y World ID.", "meta.contactTitle": "Contáctanos — HumanVault", "meta.contactDesc": "¿Tienes alguna duda sobre Human Vault? Envíanos un mensaje y te responderemos.", "nav.why": "Por qué ahora", "nav.how": "Cómo funciona", "nav.founder": "Fundador", "nav.contact": "Contacto", "nav.launch": "Iniciar HumanVault", "nav.openApp": "Abrir la app", "nav.skipLink": "Ir al contenido", "nav.themeSwitch": "Cambiar tema", "nav.toDark": "Cambiar a modo oscuro", "nav.toLight": "Cambiar a modo claro", "nav.brandAria": "Inicio de HumanVault", "nav.primaryAria": "Navegación principal", "nav.sectionAria": "Enlaces de sección", "nav.langSelect": "Seleccionar idioma", "nav.langMenu": "Idioma", "hero.eyebrow": "Una bóveda multifirma que solo personas reales pueden firmar.", "hero.h1": "Bóvedas compartidas. Personas reales. En cada aprobación.", "hero.p": "Pensada para familias, clubes de inversión y DAOs que comparten fondos. Sin extensiones de navegador ni cuentas duplicadas. Cada firmante es una persona real y única, verificada por World ID antes de cada firma.", "hero.launch": "Iniciar HumanVault", "hero.see": "Ver cómo funciona", "hero.vaultPreview": "Vista previa de la bóveda", "hero.verifiedVault": "Bóveda verificada con World ID", "hero.signers": "Firmantes de la bóveda", "hero.required": "requeridos", "hero.infraLabel": "Infraestructura", "hero.infraVal": "Cuenta inteligente Safe", "hero.infraTag": "Activo", "hero.humanLabel": "Verificación humana", "hero.humanVal": "World ID antes de cada firma", "hero.humanTag": "Obligatorio", "hero.expLabel": "Experiencia", "hero.expVal": "Tan natural como enviar un mensaje, no firmar transacciones", "hero.expTag": "Simple", "hero.gasLabel": "Comisiones (gas)", "hero.gasVal": "Cubiertas en World Chain", "hero.gasTag": "Gratis", "hero.previewCue": "Vista previa en vivo — lo que verás en World App", "security.claim": "Construida sobre Safe — y reservada a humanos verificados. La suplantación de firmantes, el tipo de ataque más habitual contra las multifirmas, queda bloqueada por diseño.", "security.ariaClaim": "Promesa de seguridad", "band.label": "Construida sobre Safe y World ID.", "band.aria": "Logotipos de las plataformas", "why.h2": "Por qué esto importa ahora.", "why.intro": "La IA rompió el viejo modelo de confianza. Human Vault vincula cada transferencia saliente a una persona única y verificada — no solo a un dispositivo o a una clave.", "why.threatLabel": "Modelo de amenazas", "why.threatNum": "IA", "why.threatCopy": "Cuando las caras y las voces pueden falsificarse, la identidad exige pruebas más sólidas que lo que aparece en una pantalla.", "why.execLabel": "Regla de ejecución", "why.execNum": "Humano", "why.execCopy": "Depositar sigue siendo fácil. El dinero no puede salir de la bóveda hasta que cada firmante requerido supere la verificación de World ID.", "why.uxLabel": "Experiencia", "why.uxNum": "Social", "why.uxCopy": "El objetivo es claro: la multifirma debe sentirse social y evidente, no como hacer malabares con extensiones del navegador y carteras de hardware.", "story.changesH3": "Lo que HumanVault cambia", "story.changesP": "En lugar de confiar solo en las claves, cada firma se respalda con prueba de humanidad. Eso hace que la infraestructura de la bóveda sea más difícil de manipular mediante ingeniería social y mucho más fácil de entender.", "story.safeStrong": "Safe debajo.", "story.safeText": "La bóveda se apoya en la infraestructura de Safe, por lo que la capa de cuenta inteligente sigue siendo conocida y robusta.", "story.worldStrong": "World ID antes de cada firma.", "story.worldText": "Cada firmante requerido revalida su World ID para esa transacción concreta — las pruebas no pueden reutilizarse.", "story.frictionStrong": "Menos fricción donde corresponde.", "story.frictionText": "Cualquiera puede depositar. Las transferencias salientes activan las verificaciones humanas que de verdad importan.", "story.sharedH3": "Diseñada para firmantes compartidos", "story.sharedP": "Piensa en una tesorería familiar, una cartera operativa de startup o un club de inversión. Human Vault convierte el flujo de aprobación en un proceso claro de invitar, confirmar, firmar y ejecutar — sin importar cuántos firmantes añadas.", "story.check1": "Invita a las personas en las que confías a compartir la bóveda.", "story.check2": "Elige cuántas aprobaciones se necesitan para enviar fondos.", "story.check3": "Aprueba y firma solo después de revalidar la identidad.", "how.h2": "Cómo funciona el flujo de la demo.", "how.intro": "La demo del producto gira en torno a una idea central: crear es fácil, mientras que cualquier salida de valor queda condicionada por humanos verificados en el momento justo en que importa.", "how.s1H3": "Verifica y entra", "how.s1P": "Inicias sesión con tu cartera de World App y verificas tu World ID una sola vez — esto te registra on-chain para que puedas crear o unirte a bóvedas.", "how.s2H3": "Crea la bóveda", "how.s2P": "Pon nombre a la bóveda, elige tus firmantes, fija el umbral y despliega — las comisiones de gas corren por nuestra cuenta.", "how.s3H3": "Invita a tus firmantes", "how.s3P": "Cada firmante invitado abre World App, confirma que es una persona real y se une a la bóveda compartida.", "how.s4H3": "Firma y ejecuta", "how.s4P": "Para enviar fondos, cada firmante requerido confirma que es una persona real, firma y ejecuta junto con los demás. Cada transferencia exige una nueva verificación — las aprobaciones anteriores no pueden reutilizarse.", "founder.label": "Sobre el fundador", "founder.quote": "Creado por alguien que ya llevó la seguridad de contraseñas al gran público.", "founder.p": "Dan fundó PasswordBox y lo llevó de cero a 16 millones de usuarios en 18 meses, antes de vender la empresa a Intel. Algunas de las patentes del equipo contribuyeron luego a dar forma a la experiencia PassKey utilizada en grandes productos de consumo.", "founder.usersL": "Usuarios", "founder.usersSub": "en 18 meses", "founder.outcomeL": "Resultado", "founder.outcomeSub": "adquisición", "founder.thesisL": "Tesis", "founder.thesisVal": "El humano primero", "founder.thesisSub": "capa de seguridad", "founder.promiseH3": "La promesa central", "founder.promiseP": "HumanVault se posiciona como la primera bóveda Safe en la que cada firma requerida va acompañada de una prueba de humanidad respaldada por biometría. La multifirma deja de centrarse en «quién controla la clave» para enfocarse en «qué persona real está aprobando realmente esta operación ahora mismo».", "founder.list1": "Más confianza en las aprobaciones de tesorería y carteras compartidas.", "founder.list2": "Menos margen para la ingeniería social impulsada por deepfakes.", "founder.list3": "Pensado primero para móvil y nativo en World App — sin extensiones, sin segunda cuenta, sin frase semilla que gestionar.", "cta.label": "HumanVault", "cta.h2": "Haz que tu próxima multifirma se sienta humana.", "cta.privacy": "HUMANVAULT antepone tu privacidad.", "cta.privacyLine1": "Usamos World ID para demostrar que un firmante es una persona real y única, sin revelar su identidad.", "cta.privacyLine2": "No hace falta ningún nombre, correo electrónico, número de teléfono ni documento de identidad para firmar una transacción.", "cta.p2": "HumanVault ya está disponible dentro de World App. Lleva la prueba de humanidad a la capa de la bóveda, mantén Safe debajo y ofrece a cada firmante un recorrido claro, desde la primera invitación hasta la ejecución final.", "cta.openApp": "Abrir en World App", "cta.top": "Volver al inicio", "cta.contact": "Contáctanos", "footer.tagline": "Prueba de humanidad para multifirmas Safe.", "footer.built": "Pensado para un mundo en el que las claves, por sí solas, ya no bastan.", "contact.eyebrow": "Contacto", "contact.h1": "Contáctanos", "contact.intro": "¿Tienes alguna duda sobre Human Vault? Envíanos un mensaje y te responderemos.", "contact.whatH2": "Sobre qué escribirnos", "contact.whatP": "Usa el formulario para preguntas sobre el producto, reportes de errores, propuestas de colaboración o cualquier otro tema.", "contact.bugStrong": "Reportes de errores", "contact.bugText": "Cuéntanos qué ocurrió, qué esperabas y qué dispositivo o navegador usaste.", "contact.prodStrong": "Preguntas sobre el producto", "contact.prodText": "Pregúntanos por la configuración, los flujos de firmantes o cómo funciona HumanVault dentro de World App.", "contact.inboxStrong": "Correo directo", "contact.sendH2": "Envíanos un mensaje", "contact.sendP": "Se envía de forma segura a nuestro servidor — sin necesidad de un cliente de correo.", "contact.nameLabel": "Nombre", "contact.nameErr": "Por favor, indica tu nombre.", "contact.emailLabel": "Correo electrónico", "contact.emailErr": "Introduce una dirección de correo válida.", "contact.subjectLabel": "Asunto", "contact.optionalPh": "Opcional", "contact.msgLabel": "Mensaje", "contact.msgErr": "Por favor, escribe un mensaje.", "contact.send": "Enviar mensaje", "contact.sending": "Enviando…", "contact.reqNote": "Los campos marcados", "contact.reqNote2": "son obligatorios.", "contact.asterisk": "con un asterisco", "contact.okMsg": "Gracias — tu mensaje se ha enviado.", "contact.errMsg": "Algo salió mal. Inténtalo de nuevo."}};
+  var LABELS = { en: 'EN', fr: 'FR', es: 'ES' };
+  var SUPPORTED = ['en','fr','es'];
+  var STORAGE = 'hv_lang';
+
+  function readLang(){
+    try{
+      var s = localStorage.getItem(STORAGE);
+      if(s && SUPPORTED.indexOf(s) >= 0) return s;
+    }catch(e){}
+    return 'en';
+  }
+  function writeLang(l){ try{ localStorage.setItem(STORAGE, l); }catch(e){} }
+
+  var current = readLang();
+
+  function apply(lang){
+    current = lang;
+    var dict = T[lang] || T.en;
+    window.HV_LANG = lang;
+    window.HV_T = dict;
+    document.documentElement.setAttribute('lang', lang);
+
+    // text content
+    var els = document.querySelectorAll('[data-i18n]');
+    for(var i=0;i<els.length;i++){
+      var k = els[i].getAttribute('data-i18n');
+      if(dict[k] != null) els[i].innerHTML = dict[k];
+    }
+
+    // attribute translations
+    var attrEls = document.querySelectorAll('[data-i18n-attr]');
+    for(var j=0;j<attrEls.length;j++){
+      var spec = attrEls[j].getAttribute('data-i18n-attr');
+      var pairs = spec.split(',');
+      for(var p=0;p<pairs.length;p++){
+        var sep = pairs[p].indexOf(':');
+        if(sep < 0) continue;
+        var attr = pairs[p].slice(0, sep).trim();
+        var key = pairs[p].slice(sep+1).trim();
+        if(dict[key] != null) attrEls[j].setAttribute(attr, dict[key]);
+      }
+    }
+
+    // <title>
+    var titleEl = document.querySelector('title[data-i18n]');
+    if(titleEl){
+      var tk = titleEl.getAttribute('data-i18n');
+      if(dict[tk] != null) document.title = dict[tk];
+    }
+
+    // meta description
+    var meta = document.querySelector('meta[name="description"][data-i18n]');
+    if(meta){
+      var mk = meta.getAttribute('data-i18n');
+      if(dict[mk] != null) meta.setAttribute('content', dict[mk]);
+    }
+
+    // switcher button state
+    var codeEls = document.querySelectorAll('[data-lang-current]');
+    for(var c=0;c<codeEls.length;c++){ codeEls[c].textContent = LABELS[lang]; }
+    var opts = document.querySelectorAll('[data-lang-option]');
+    for(var o=0;o<opts.length;o++){
+      opts[o].setAttribute('aria-selected', opts[o].getAttribute('data-lang-option') === lang ? 'true' : 'false');
+    }
+
+    // Let the theme script refresh its aria-label based on new language
+    if(typeof window.HV_repaintTheme === 'function') window.HV_repaintTheme();
+
+    // Notify form scripts (contact page) that strings may have changed
+    document.dispatchEvent(new CustomEvent('hv:langchange', { detail: { lang: lang } }));
+  }
+
+  window.HV_setLang = function(lang){
+    if(SUPPORTED.indexOf(lang) < 0) return;
+    writeLang(lang);
+    apply(lang);
+  };
+  window.HV_getLang = function(){ return current; };
+
+  function wireSwitcher(){
+    var btn = document.querySelector('[data-lang-toggle]');
+    var menu = document.querySelector('[data-lang-menu]');
+    if(!btn || !menu) return;
+
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      var willOpen = !menu.classList.contains('open');
+      menu.classList.toggle('open', willOpen);
+      btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    });
+
+    var opts = menu.querySelectorAll('[data-lang-option]');
+    for(var i=0;i<opts.length;i++){
+      (function(opt){
+        opt.addEventListener('click', function(){
+          var l = opt.getAttribute('data-lang-option');
+          window.HV_setLang(l);
+          menu.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        });
+      })(opts[i]);
+    }
+
+    document.addEventListener('click', function(e){
+      if(!menu.contains(e.target) && !btn.contains(e.target)){
+        menu.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && menu.classList.contains('open')){
+        menu.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.focus();
+      }
+    });
+  }
+
+  // Apply immediately so first paint matches stored language
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', function(){ apply(current); wireSwitcher(); });
+  }else{
+    apply(current);
+    wireSwitcher();
+  }
+})();
+</script>
  <script>
   (() => {
    const root = document.documentElement;
@@ -544,12 +731,15 @@
    const paint = () => {
     root.setAttribute('data-theme', theme);
     if (toggle) {
-     toggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+     const T = (window.HV_T) || {};
+     const lbl = theme === 'dark' ? (T['nav.toLight'] || 'Switch to light mode') : (T['nav.toDark'] || 'Switch to dark mode');
+     toggle.setAttribute('aria-label', lbl);
      toggle.innerHTML = theme === 'dark'
       ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
       : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
     }
    };
+   window.HV_repaintTheme = paint;
    paint();
    toggle?.addEventListener('click', () => { theme = theme === 'dark' ? 'light' : 'dark'; paint(); });
    const header = document.querySelector('.site-header');
